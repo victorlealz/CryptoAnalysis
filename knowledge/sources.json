@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "id": "knowledge-base",
+      "label": "Knowledge Base",
+      "path": "./knowledge/knowledge-base.md",
+      "description": "Base metodológica de Chain Analysis OSINT."
+    },
+    {
+      "id": "skill",
+      "label": "SKILL.md",
+      "path": "./knowledge/SKILL.md",
+      "description": "Fluxo operacional e regras do agente Chain Analysis OSINT."
+    }
+  ]
+}

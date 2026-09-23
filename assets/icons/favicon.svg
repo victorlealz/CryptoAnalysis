@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">GuiaCrypto144</title>
+  <desc id="desc">Ícone com três elos conectados representando rastreamento em blockchain.</desc>
+  <rect width="64" height="64" rx="14" fill="#0b1f33"/>
+  <path d="M19 22h13a8 8 0 0 1 0 16H19a8 8 0 0 1 0-16Zm26 0H32a8 8 0 0 0 0 16h13a8 8 0 0 0 0-16Z" fill="none" stroke="#62d7c6" stroke-width="5" stroke-linecap="round"/>
+  <path d="M26 30h12" stroke="#f2b84b" stroke-width="5" stroke-linecap="round"/>
+</svg>

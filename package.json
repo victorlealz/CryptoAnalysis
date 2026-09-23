@@ -1,0 +1,13 @@
+{
+  "name": "guiacrypto144",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Guia estático de apoio a investigações de Chain Analysis com fontes abertas.",
+  "scripts": {
+    "dev": "wrangler pages dev .",
+    "deploy": "wrangler pages deploy . --project-name=guiacrypto144"
+  },
+  "devDependencies": {
+    "wrangler": "4.135.0"
+  }
+}

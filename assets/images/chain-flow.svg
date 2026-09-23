@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" role="img" aria-labelledby="title desc">
+  <title id="title">Fluxo conceitual de Chain Analysis</title>
+  <desc id="desc">Diagrama ilustrando origem, transação, bridge ou protocolo e possível VASP, com validação entre os pontos.</desc>
+  <defs>
+    <linearGradient id="panel" x1="0" x2="1">
+      <stop offset="0" stop-color="#102c48"/>
+      <stop offset="1" stop-color="#0b1f33"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0 0 10 5 0 10Z" fill="#62d7c6"/>
+    </marker>
+  </defs>
+  <rect width="900" height="420" rx="34" fill="url(#panel)"/>
+  <g font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    <text x="54" y="72" font-size="24" font-weight="700" fill="#ffffff">Rastrear → validar → atribuir com cautela</text>
+    <text x="54" y="104" font-size="15" fill="#b9cada">Cada seta deve ser reproduzível por dados públicos.</text>
+
+    <g transform="translate(62 166)">
+      <rect width="155" height="112" rx="18" fill="#173c5e" stroke="#2a5678"/>
+      <circle cx="42" cy="42" r="18" fill="#62d7c6" opacity=".18"/>
+      <path d="M31 42h22M42 31v22" stroke="#62d7c6" stroke-width="4" stroke-linecap="round"/>
+      <text x="24" y="82" font-size="16" font-weight="700" fill="#fff">Ponto inicial</text>
+      <text x="24" y="103" font-size="12" fill="#b9cada">hash ou endereço</text>
+    </g>
+
+    <g transform="translate(288 166)">
+      <rect width="155" height="112" rx="18" fill="#173c5e" stroke="#2a5678"/>
+      <path d="M30 35h70M30 49h95M30 63h58" stroke="#f2b84b" stroke-width="5" stroke-linecap="round" opacity=".9"/>
+      <text x="24" y="82" font-size="16" font-weight="700" fill="#fff">Transação</text>
+      <text x="24" y="103" font-size="12" fill="#b9cada">efeito econômico</text>
+    </g>
+
+    <g transform="translate(514 166)">
+      <rect width="155" height="112" rx="18" fill="#173c5e" stroke="#2a5678"/>
+      <path d="M34 58c22-38 54-38 76 0M34 38c22 38 54 38 76 0" fill="none" stroke="#62d7c6" stroke-width="5" stroke-linecap="round"/>
+      <text x="24" y="82" font-size="16" font-weight="700" fill="#fff">Continuidade</text>
+      <text x="24" y="103" font-size="12" fill="#b9cada">swap / bridge / UTXO</text>
+    </g>
+
+    <g transform="translate(740 166)">
+      <rect width="100" height="112" rx="18" fill="#173c5e" stroke="#2a5678"/>
+      <path d="M25 36h50v39H25zM34 28h32v8H34z" fill="none" stroke="#f2b84b" stroke-width="4"/>
+      <text x="21" y="94" font-size="14" font-weight="700" fill="#fff">VASP?</text>
+    </g>
+
+    <path d="M219 222h61" stroke="#62d7c6" stroke-width="4" marker-end="url(#arrow)"/>
+    <path d="M445 222h61" stroke="#62d7c6" stroke-width="4" marker-end="url(#arrow)"/>
+    <path d="M671 222h61" stroke="#62d7c6" stroke-width="4" marker-end="url(#arrow)"/>
+
+    <rect x="188" y="318" width="524" height="48" rx="14" fill="#0a1928" stroke="#27445e"/>
+    <text x="218" y="348" font-size="14" fill="#dbe7ef">OBSERVADO → INFERIDO → CONFIRMADO PUBLICAMENTE → LIMITAÇÃO → DILIGÊNCIA</text>
+  </g>
+</svg>
