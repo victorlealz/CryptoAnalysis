@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "id": "knowledge-base",
+      "label": "Knowledge Base",
+      "path": "./knowledge/knowledge-base.md"
+    },
+    {
+      "id": "skill",
+      "label": "SKILL.md",
+      "path": "./knowledge/SKILL.md"
+    }
+  ]
+}

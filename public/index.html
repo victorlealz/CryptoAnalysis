@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GuiaCrypto144 — Guia policial de Chain Analysis</title>
+  <meta name="description" content="Guia operacional interno para apoio a investigações de Chain Analysis com fontes abertas.">
+  <meta name="theme-color" content="#10253f">
+  <link rel="icon" href="./assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="./js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <div>
+        <strong class="site-name">GuiaCrypto144</strong>
+        <span class="site-subtitle">Guia policial de Chain Analysis</span>
+      </div>
+      <div class="topbar-note">SOMENTE FONTES ABERTAS</div>
+    </div>
+  </header>
+
+  <main id="conteudo" class="shell main-layout">
+    <section class="notice" aria-label="Orientação de uso">
+      <strong>Uso operacional.</strong>
+      Não inserir dados sigilosos, chaves privadas, seed phrases, senhas ou credenciais. O site não consulta APIs e não armazena o caderno após o fechamento da aba.
+    </section>
+
+    <section class="card" aria-labelledby="inicio-title">
+      <div class="section-title-row">
+        <div>
+          <span class="step">1</span>
+          <h1 id="inicio-title">Iniciar análise</h1>
+        </div>
+        <p>Identifique a rede e valide o formato antes de abrir o explorador.</p>
+      </div>
+
+      <form id="triage-form" class="form-grid" novalidate>
+        <div class="field">
+          <label for="network">Rede</label>
+          <select id="network" name="network">
+            <option value="bitcoin">Bitcoin</option>
+            <option value="ethereum">Ethereum</option>
+            <option value="bsc">BNB Smart Chain</option>
+            <option value="polygon">Polygon</option>
+            <option value="arbitrum">Arbitrum One</option>
+            <option value="base">Base</option>
+            <option value="optimism">Optimism</option>
+            <option value="tron">TRON</option>
+            <option value="evm">Outra rede EVM</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="identifier-type">Tipo</label>
+          <select id="identifier-type" name="identifierType">
+            <option value="auto">Detectar</option>
+            <option value="address">Endereço</option>
+            <option value="transaction">TXID / hash</option>
+            <option value="contract">Contrato / token</option>
+          </select>
+        </div>
+
+        <div class="field field-wide">
+          <label for="identifier">Identificador on-chain</label>
+          <input id="identifier" name="identifier" type="text" autocomplete="off" spellcheck="false" placeholder="Cole o endereço, TXID ou hash">
+        </div>
+
+        <div class="actions field-wide">
+          <button class="btn btn-primary" type="submit">Validar e orientar</button>
+          <button class="btn" type="reset">Limpar</button>
+        </div>
+      </form>
+
+      <div id="triage-result" class="result" aria-live="polite" hidden></div>
+    </section>
+
+    <section class="card" aria-labelledby="roteiro-title">
+      <div class="section-title-row">
+        <div>
+          <span class="step">2</span>
+          <h2 id="roteiro-title">Roteiro essencial</h2>
+        </div>
+        <p>Use o roteiro correspondente à rede selecionada.</p>
+      </div>
+      <div id="playbook" class="playbook" aria-live="polite"></div>
+    </section>
+
+    <section class="card" aria-labelledby="caderno-title">
+      <div class="section-title-row">
+        <div>
+          <span class="step">3</span>
+          <h2 id="caderno-title">Caderno de rastreio</h2>
+        </div>
+        <p>Registre enquanto rastreia. Um salto sem hash, rede, valor e UTC não está documentado.</p>
+      </div>
+
+      <form id="hop-form" class="form-grid form-grid-ledger" novalidate>
+        <div class="field">
+          <label for="hop-network">Rede</label>
+          <select id="hop-network" name="hopNetwork">
+            <option value="Bitcoin">Bitcoin</option>
+            <option value="Ethereum">Ethereum</option>
+            <option value="BNB Smart Chain">BNB Smart Chain</option>
+            <option value="Polygon">Polygon</option>
+            <option value="Arbitrum One">Arbitrum One</option>
+            <option value="Base">Base</option>
+            <option value="Optimism">Optimism</option>
+            <option value="TRON">TRON</option>
+            <option value="Outra EVM">Outra EVM</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="hop-kind">Natureza</label>
+          <select id="hop-kind" name="hopKind">
+            <option value="Transferência">Transferência</option>
+            <option value="Token">Token</option>
+            <option value="Contrato/DeFi">Contrato/DeFi</option>
+            <option value="Bridge/Cross-chain">Bridge/Cross-chain</option>
+            <option value="VASP/PSAV">VASP/PSAV</option>
+          </select>
+        </div>
+
+        <div class="field field-wide">
+          <label for="hop-hash">Hash / TXID</label>
+          <input id="hop-hash" name="hopHash" type="text" autocomplete="off" spellcheck="false" required>
+        </div>
+
+        <div class="field">
+          <label for="hop-utc">Data e hora UTC</label>
+          <input id="hop-utc" name="hopUtc" type="text" placeholder="AAAA-MM-DD HH:MM:SS UTC" required>
+        </div>
+
+        <div class="field">
+          <label for="hop-asset">Ativo</label>
+          <input id="hop-asset" name="hopAsset" type="text" placeholder="BTC, ETH, USDT..." required>
+        </div>
+
+        <div class="field field-wide">
+          <label for="hop-from">Origem / input relevante</label>
+          <input id="hop-from" name="hopFrom" type="text" autocomplete="off" spellcheck="false" required>
+        </div>
+
+        <div class="field field-wide">
+          <label for="hop-to">Destino / output relevante</label>
+          <input id="hop-to" name="hopTo" type="text" autocomplete="off" spellcheck="false" required>
+        </div>
+
+        <div class="field">
+          <label for="hop-value">Valor</label>
+          <input id="hop-value" name="hopValue" type="text" placeholder="Ex.: 1,00000000" required>
+        </div>
+
+        <div class="field">
+          <label for="hop-classification">Classificação</label>
+          <select id="hop-classification" name="hopClassification">
+            <option value="Observado">Observado</option>
+            <option value="Inferido">Inferido</option>
+            <option value="Confirmado publicamente">Confirmado publicamente</option>
+            <option value="Limitação">Limitação</option>
+          </select>
+        </div>
+
+        <div class="field field-wide">
+          <label for="hop-basis">Fundamento / heurística / fonte</label>
+          <textarea id="hop-basis" name="hopBasis" rows="3" placeholder="Regra utilizada, URL pública, data da consulta ou limitação"></textarea>
+        </div>
+
+        <div class="actions field-wide">
+          <button class="btn btn-primary" type="submit">Adicionar salto</button>
+          <button class="btn" id="clear-ledger" type="button">Limpar caderno</button>
+        </div>
+      </form>
+
+      <div class="table-wrap" tabindex="0" aria-label="Tabela de saltos registrados">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Rede</th>
+              <th>Hash</th>
+              <th>UTC</th>
+              <th>Origem</th>
+              <th>Destino</th>
+              <th>Ativo</th>
+              <th>Valor</th>
+              <th>Classificação</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="ledger-body">
+            <tr id="ledger-empty"><td colspan="10">Nenhum salto registrado.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="actions ledger-actions">
+        <button class="btn" id="copy-summary" type="button">Copiar resumo</button>
+        <button class="btn" id="export-csv" type="button">Exportar CSV</button>
+        <button class="btn" id="export-json" type="button">Exportar JSON</button>
+      </div>
+      <p id="ledger-status" class="status-text" aria-live="polite"></p>
+    </section>
+
+    <section class="card" aria-labelledby="base-title">
+      <div class="section-title-row">
+        <div>
+          <span class="step">4</span>
+          <h2 id="base-title">Consulta à base interna</h2>
+        </div>
+        <p>Pesquisa local nos arquivos Markdown anexados ao repositório.</p>
+      </div>
+
+      <form id="kb-form" class="kb-form" role="search">
+        <label class="sr-only" for="kb-query">Pesquisar na base interna</label>
+        <input id="kb-query" type="search" autocomplete="off" placeholder="Ex.: troco, gas funding, bridge, CoinJoin, USDT">
+        <button class="btn btn-primary" type="submit">Pesquisar</button>
+      </form>
+      <p id="kb-status" class="status-text" aria-live="polite">Carregando bases...</p>
+      <div id="kb-results" class="kb-results"></div>
+    </section>
+
+    <section class="card checklist-card" aria-labelledby="checklist-title">
+      <div class="section-title-row compact">
+        <div>
+          <span class="step">5</span>
+          <h2 id="checklist-title">Fechamento</h2>
+        </div>
+      </div>
+      <ul class="final-checklist">
+        <li>Hash/TXID e endereços completos.</li>
+        <li>Rede, ativo, contrato do token quando aplicável, valor e UTC.</li>
+        <li>Fonte pública e data/hora da consulta.</li>
+        <li>Separação entre observado, inferido, confirmado publicamente e limitação.</li>
+        <li>Ramos não seguidos e motivo.</li>
+        <li>Depósito em VASP/PSAV não equivale, por si só, a saque em moeda fiduciária nem identifica o titular.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell">
+      <p><strong>GuiaCrypto144.</strong> Apoio à documentação de Chain Analysis. Atribuição de identidade exige confirmação por fonte independente ou diligência adequada.</p>
+    </div>
+  </footer>
+</body>
+</html>

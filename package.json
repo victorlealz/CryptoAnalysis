@@ -1,0 +1,13 @@
+{
+  "name": "guiacrypto144",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Guia policial interno de Chain Analysis baseado em fontes abertas.",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "4.137.0"
+  }
+}
